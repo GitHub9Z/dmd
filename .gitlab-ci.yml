@@ -1,48 +1,33 @@
 stages:
+  - install
   - build
-  - cleanup_build
-  - test
   - deploy
-  - cleanup
+  - upload
+
+install_job:
+  stage: install
+  script:
+    - npm install --progress=false
+  tags:
+    - imgker
 
 build_job:
   stage: build
   script:
-    - npm set registry https://registry.npm.taobao.org
-    - pwd
-    - npm install --progress=false
     - npm run build
-  tags:
-    - imgker
-
-cleanup_build_job:
-  stage: cleanup_build
-  script:
-    - echo $PWD
-  when: on_failure
-  tags:
-    - imgker
-
-test_job:
-  stage: test
-  script:
-    - echo $PWD
   tags:
     - imgker
 
 deploy_job:
   stage: deploy
   script:
-    - echo $PWD
-  when: manual
+    - APPID=$(NODE_ENV=$(git log --pretty=format:\"%an-%h-%s-%H\" -1) node ./gitlab-ci/init.js)
   tags:
     - imgker
 
-cleanup_job:
-  stage: cleanup
+upload_job:
+  stage: upload
   script:
-    - echo $PWD
-  when: always
+    - /home/ossutil64 cp -r ./dist oss://jsonote/$APPID
   tags:
     - imgker
- 
