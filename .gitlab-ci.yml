@@ -4,6 +4,7 @@ stages:
   - test
   - deploy
   - cleanup
+tags: imgker
 
 build_job:
   stage: build
