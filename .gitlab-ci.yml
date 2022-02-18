@@ -8,14 +8,14 @@ stages:
 build_job:
   stage: build
   script:
-    - npm run build
+    - echo $PWD
   tags:
     - imgker
 
 cleanup_build_job:
   stage: cleanup_build
   script:
-    - cleanup build when failed
+    - echo $PWD
   when: on_failure
   tags:
     - imgker
@@ -23,14 +23,14 @@ cleanup_build_job:
 test_job:
   stage: test
   script:
-    - make test
+    - echo $PWD
   tags:
     - imgker
 
 deploy_job:
   stage: deploy
   script:
-    - make deploy
+    - echo $PWD
   when: manual
   tags:
     - imgker
@@ -38,7 +38,7 @@ deploy_job:
 cleanup_job:
   stage: cleanup
   script:
-    - cleanup after jobs
+    - echo $PWD
   when: always
   tags:
     - imgker
