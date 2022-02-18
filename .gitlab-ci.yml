@@ -1,8 +1,8 @@
 stages:
   - install
-  # - build
-  # - deploy
-  # - upload
+  - build
+  - deploy
+  - upload
 
 install_job:
   stage: install
