@@ -4,33 +4,42 @@ stages:
   - test
   - deploy
   - cleanup
-tags: imgker
 
 build_job:
   stage: build
   script:
     - npm run build
+  tags:
+    - imgker
 
 cleanup_build_job:
   stage: cleanup_build
   script:
     - cleanup build when failed
   when: on_failure
+  tags:
+    - imgker
 
 test_job:
   stage: test
   script:
     - make test
+  tags:
+    - imgker
 
 deploy_job:
   stage: deploy
   script:
     - make deploy
   when: manual
+  tags:
+    - imgker
 
 cleanup_job:
   stage: cleanup
   script:
     - cleanup after jobs
   when: always
+  tags:
+    - imgker
  
