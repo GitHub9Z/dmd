@@ -1,33 +1,42 @@
 stages:
   - install
-  - build
-  - deploy
-  - upload 
+  # - build
+  # - deploy
+  # - upload 
 
 install_job:
   stage: install
   script:
     - npm install
-  tags:
-    - imgker
-
-build_job:
-  stage: build
-  script:
-    - npm run build
-  tags:
-    - imgker
-
-deploy_job:
-  stage: deploy
-  script:
+    - npm run build 
     - APPID=$(NODE_ENV=$(git log --pretty=format:\"%an-%h-%s-%H\" -1) node ./gitlab-ci/init.js)
+    - mkdir dist_new
+    - mv ./dist ./dist_new 
+    - echo "$APPID"
+    # - /home/ossutil64 cp -r ./dist_new oss://jsonote/$APPID
   tags:
     - imgker
 
-upload_job:
-  stage: upload
-  script:
-    - /home/ossutil64 cp -r ./dist oss://jsonote/$APPID
-  tags:
-    - imgker
+# build_job:
+#   stage: build
+#   script:
+#     - APPID=$(NODE_ENV=$(git log --pretty=format:\"%an-%h-%s-%H\" -1) node ./gitlab-ci/init.js)
+#     - mkdir dist_new
+#     - mv ./dist ./dist_new
+#     - /home/ossutil64 cp -r ./dist_new oss://jsonote/$APPID
+#   tags:
+#     - imgker
+
+# deploy_job:
+#   stage: deploy
+#   script:
+#     - APPID=$(NODE_ENV=$(git log --pretty=format:\"%an-%h-%s-%H\" -1) node ./gitlab-ci/init.js)
+#   tags:
+#     - imgker
+
+# upload_job:
+#   stage: upload
+#   script:
+#     - /home/ossutil64 cp -r ./dist oss://jsonote/$APPID
+#   tags:
+#     - imgker
