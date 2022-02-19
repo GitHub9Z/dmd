@@ -13,7 +13,7 @@ install_job:
     - mkdir dist_new
     - mv ./dist ./dist_new 
     - echo "$APPID"
-    # - /home/ossutil64 cp -r ./dist_new oss://jsonote/$APPID
+    - /home/ossutil64 cp -r ./dist_new oss://jsonote/$APPID
   tags:
     - imgker
 
