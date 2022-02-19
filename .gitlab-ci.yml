@@ -26,4 +26,4 @@ upload_job:
   script:
     - /home/ossutil64 cp -r /home/dist_new oss://jsonote/$APPID
   tags:
-    - imgker
+    - imgker 
