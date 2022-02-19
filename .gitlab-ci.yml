@@ -1,19 +1,12 @@
 stages:
   - build
   - deploy
-  - upload
 
 build_job:
   stage: build
   script:
     - npm install
     - npm run build 
-  tags:
-    - imgker
-
-deploy_job:
-  stage: deploy
-  script:
     - APPID=$(NODE_ENV=$(git log --pretty=format:\"%an-%h-%s-%H\" -1) node ./gitlab-ci/init.js)
     - mkdir dist_new
     - mv ./dist ./dist_new 
@@ -21,9 +14,9 @@ deploy_job:
   tags:
     - imgker
 
-upload_job:
-  stage: upload
+deploy_job:
+  stage: deploy
   script:
     - /home/ossutil64 cp -r /home/dist_new oss://jsonote/$APPID
   tags:
-    - imgker 
+    - imgker
