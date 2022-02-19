@@ -20,3 +20,4 @@ deploy_job:
     - /home/ossutil64 cp -r /home/dist_new oss://jsonote/$APPID
   tags:
     - imgker
+ 
