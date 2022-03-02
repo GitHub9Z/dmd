@@ -1,6 +1,7 @@
 stages:
   - ping
   - build
+  - pingping
   - deploy
 
 ping_job:
@@ -19,6 +20,13 @@ build_job:
     # - mkdir dist_new
     # - mv ./dist ./dist_new 
     # - mv ./dist_new /home
+  tags:
+    - imgker
+
+pingping_job:
+  stage: pingping
+  script:
+    - echo '2133222'
   tags:
     - imgker
 
