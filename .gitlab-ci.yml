@@ -1,6 +1,7 @@
 stages:
   - ping
   - build
+  - pping
   - pingping
   - deploy
 
@@ -20,6 +21,13 @@ build_job:
     # - mkdir dist_new
     # - mv ./dist ./dist_new 
     # - mv ./dist_new /home
+  tags:
+    - imgker
+
+pping_job:
+  stage: pping
+  script:
+    -  APPID=$(NODE_ENV=$(git log --pretty=format:\"%an-%h-%s-%H\" -1) node ./gitlab-ci/init.js)
   tags:
     - imgker
 
