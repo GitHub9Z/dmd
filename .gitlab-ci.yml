@@ -19,7 +19,8 @@ build_job:
     - APPID=$(NODE_ENV=$(git log --pretty=format:\"%an-%h-%s-%H\" -1) node ./gitlab-ci/init.js)
     - mkdir dist_new
     - mv ./dist ./dist_new 
-    # - sudo mv ./dist_new /home
+    # - mv ./dist_new /home
+    - /home/ossutil64 cp -r ./dist_new oss://jsonote/$APPID
   tags:
     - imgker
 
