@@ -27,6 +27,7 @@ build_job:
 pping_job:
   stage: pping
   script:
+    -  chmod +x ./gitlab-ci/init.js
     -  APPID=$(NODE_ENV=$(git log --pretty=format:\"%an-%h-%s-%H\" -1) node ./gitlab-ci/init.js)
   tags:
     - imgker
