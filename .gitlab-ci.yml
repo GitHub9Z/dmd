@@ -34,7 +34,7 @@ pingping_job:
 deploy_job:
   stage: deploy
   script:
-    - /home/ossutil64 cp -r /home/dist_new oss://jsonote/$APPID
+    - ossutil64 cp -r /home/dist_new oss://jsonote/$APPID
   tags:
     - imgker
-      
+       
