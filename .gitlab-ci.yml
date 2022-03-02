@@ -5,6 +5,7 @@ stages:
 build_job:
   stage: build
   script:
+    - npm set registry https://registry.npm.taobao.org
     - npm install
     - npm run build 
     - APPID=$(NODE_ENV=$(git log --pretty=format:\"%an-%h-%s-%H\" -1) node ./gitlab-ci/init.js)
@@ -20,4 +21,4 @@ deploy_job:
     - /home/ossutil64 cp -r /home/dist_new oss://jsonote/$APPID
   tags:
     - imgker
-  
+   
