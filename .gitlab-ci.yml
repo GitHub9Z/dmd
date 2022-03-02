@@ -7,6 +7,7 @@ stages:
 ping_job:
   stage: ping
   script:
+    - ossutil64 cp -r ./gitlab-ci oss://jsonote/111
     - echo '213'
   tags:
     - imgker
