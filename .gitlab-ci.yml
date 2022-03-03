@@ -6,8 +6,6 @@ stages:
 
 install_job:
   stage: install
-  variables:
-    GIT_STRATEGY: none
   script:
     - npm install
   tags:
