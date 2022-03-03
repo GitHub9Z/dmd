@@ -1,14 +1,11 @@
 stages:
   - ping
   - build
-  - pingping
-  - deploy
 
 ping_job:
   stage: ping
   script:
-    # - ossutil64 cp -r ./gitlab-ci oss://jsonote/111
-    - echo '213' > log.txt
+    - echo 'start'
   tags:
     - imgker
 
@@ -24,18 +21,3 @@ build_job:
     - ossutil64 cp -r ./dist_new oss://jsonote/$APPID  > logg.txt
   tags:
     - imgker
-
-pingping_job:
-  stage: pingping
-  script:
-    - echo '2133222'
-  tags:
-    - imgker
-
-deploy_job:
-  stage: deploy
-  script:
-    - ossutil64 cp -r /home/dist_new oss://jsonote/$APPID
-  tags:
-    - imgker
-        
