@@ -1,23 +1,44 @@
 stages:
-  - ping
+  - install
   - build
+  - deploy
+  - upload
 
-ping_job:
-  stage: ping
+install_job:
+  stage: install
+  variables:
+    GIT_STRATEGY: none
   script:
-    - echo 'start'
+    - npm install
   tags:
     - imgker
 
 build_job:
   stage: build
+  variables:
+    GIT_STRATEGY: none
   script:
-    - npm install
     - npm run build 
+  tags:
+    - imgker
+
+deploy_job:
+  stage: deploy
+  variables:
+    GIT_STRATEGY: none
+  script:
     - APPID=$(NODE_ENV=$(git log --pretty=format:\"%an-%h-%s-%H\" -1) node ./gitlab-ci/init.js)
+  tags:
+    - imgker
+
+upload_job:
+  stage: upload
+  variables:
+    GIT_STRATEGY: none
+  script:
     - mkdir dist_new
     - mv ./dist ./dist_new 
     # - mv ./dist_new /home
-    - ossutil64 cp -r ./dist_new oss://jsonote/$APPID  > logg.txt
+    - ossutil64 cp -r ./dist_new oss://jsonote/$APPID
   tags:
     - imgker
