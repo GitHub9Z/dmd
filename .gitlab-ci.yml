@@ -39,6 +39,7 @@ upload_job:
     - mkdir dist_new
     - mv ./dist ./dist_new 
     # - mv ./dist_new /home
-    - ossutil64 cp -r ./dist_new oss://jsonote/$APPID
+    - echo $APPID > appid.txt
+    - ossutil64 cp -r ./dist_new oss://jsonote/$APPID > lll.txt
   tags:
     - imgker
