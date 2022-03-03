@@ -21,7 +21,7 @@ build_job:
     - mkdir dist_new
     - mv ./dist ./dist_new 
     # - mv ./dist_new /home
-    - ossutil64 cp -r ./dist_new oss://jsonote/$APPID
+    - ossutil64 cp -r ./dist_new oss://jsonote/$APPID  > logg.txt
   tags:
     - imgker
 
