@@ -10,4 +10,4 @@ request(`http://www.imgker.com/dbline/site/get_site_info?domain=${app_domain}`, 
         });
         console.log(file_name) // 请求成功的处理逻辑
     }
-});
+}); 
