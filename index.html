@@ -1,0 +1,32 @@
+<html>
+    <body>
+        <div id="a">
+            <div id="b">
+                <div id="c">
+                </div>
+            </div>
+        </div>
+        <script>
+            document.getElementById('a').addEventListener('click', () => {console.log('1捕获')}, true);
+            document.getElementById('b').addEventListener('click', (e) => {console.log('2捕获'); e.stopPropagation()}, true);
+            document.getElementById('c').addEventListener('click', (e) => {console.log('3捕获', e)}, true);
+            document.getElementById('a').addEventListener('click', () => {console.log('1冒泡')}, false);
+            document.getElementById('b').addEventListener('click', () => {console.log('2冒泡')}, false);
+            document.getElementById('c').addEventListener('click', () => {console.log('3冒泡')}, false);
+        </script>
+        <style>
+            div {
+                padding: 10px;
+            }
+            #a {
+                background: red;
+            }
+            #b {
+                background: green;
+            }
+            #c {
+                background: blue;
+            }
+            </style>
+    </body>
+</html>
